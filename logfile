@@ -1,0 +1,193 @@
+2020-12-17 09:32:05.878 IST [5922] LOG:  starting PostgreSQL 13.0 on x86_64-apple-darwin19.6.0, compiled by Apple clang version 12.0.0 (clang-1200.0.32.2), 64-bit
+2020-12-17 09:32:05.879 IST [5922] LOG:  listening on IPv6 address "::1", port 5432
+2020-12-17 09:32:05.879 IST [5922] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-12-17 09:32:05.880 IST [5922] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-12-17 09:32:05.883 IST [5923] LOG:  database system was shut down at 2020-12-17 09:31:43 IST
+2020-12-17 09:32:05.886 IST [5922] LOG:  database system is ready to accept connections
+2020-12-17 10:19:49.784 IST [7837] ERROR:  type "transaction_type_enum" does not exist at character 155
+2020-12-17 10:19:49.784 IST [7837] STATEMENT:  CREATE TABLE credits (
+	    id BIGSERIAL PRIMARY KEY,
+	    uuid uuid DEFAULT uuid_generate_v4() NOT NULL,
+	    user_uuid uuid NOT NULL,
+	    transaction_type transaction_type_enum NOT NULL,
+	    transaction_reference uuid,
+	    transaction_note text,
+	    transaction_currency_code text NOT NULL,
+	    transaction_country_id integer NOT NULL,
+	    credit_amount int NOT NULL, 
+	    available_amount int DEFAULT 0, 
+	    exausted boolean DEFAULT false, 
+	    type VARCHAR(32), 
+	    priority int,
+	    expires_at timestamp without time zone, 
+	    created_at timestamp without time zone,
+	    updated_at timestamp without time zone,
+	    CONSTRAINT ledger_user_uuid_user_country_id_user_currency_code_transac_key UNIQUE (user_uuid, user_country_id, user_currency_code, transaction_type, transaction_reference, created_at)
+	);
+2020-12-17 10:20:11.066 IST [7837] ERROR:  column "user_country_id" named in key does not exist at character 568
+2020-12-17 10:20:11.066 IST [7837] STATEMENT:  CREATE TABLE credits (
+	    id BIGSERIAL PRIMARY KEY,
+	    uuid uuid DEFAULT uuid_generate_v4() NOT NULL,
+	    user_uuid uuid NOT NULL,
+	    transaction_reference uuid,
+	    transaction_note text,
+	    transaction_currency_code text NOT NULL,
+	    transaction_country_id integer NOT NULL,
+	    credit_amount int NOT NULL, 
+	    available_amount int DEFAULT 0, 
+	    exausted boolean DEFAULT false, 
+	    type VARCHAR(32), 
+	    priority int,
+	    expires_at timestamp without time zone, 
+	    created_at timestamp without time zone,
+	    updated_at timestamp without time zone,
+	    CONSTRAINT ledger_user_uuid_user_country_id_user_currency_code_transac_key UNIQUE (user_uuid, user_country_id, user_currency_code, transaction_reference, created_at)
+	);
+2020-12-17 10:20:20.628 IST [7837] ERROR:  column "user_currency_code" named in key does not exist at character 568
+2020-12-17 10:20:20.628 IST [7837] STATEMENT:  CREATE TABLE credits (
+	    id BIGSERIAL PRIMARY KEY,
+	    uuid uuid DEFAULT uuid_generate_v4() NOT NULL,
+	    user_uuid uuid NOT NULL,
+	    transaction_reference uuid,
+	    transaction_note text,
+	    transaction_currency_code text NOT NULL,
+	    transaction_country_id integer NOT NULL,
+	    credit_amount int NOT NULL, 
+	    available_amount int DEFAULT 0, 
+	    exausted boolean DEFAULT false, 
+	    type VARCHAR(32), 
+	    priority int,
+	    expires_at timestamp without time zone, 
+	    created_at timestamp without time zone,
+	    updated_at timestamp without time zone,
+	    CONSTRAINT ledger_user_uuid_user_country_id_user_currency_code_transac_key UNIQUE (user_uuid, user_currency_code, transaction_reference, created_at)
+	);
+2020-12-17 10:20:34.686 IST [7837] ERROR:  function uuid_generate_v4() does not exist at character 76
+2020-12-17 10:20:34.686 IST [7837] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2020-12-17 10:20:34.686 IST [7837] STATEMENT:  CREATE TABLE credits (
+	    id BIGSERIAL PRIMARY KEY,
+	    uuid uuid DEFAULT uuid_generate_v4() NOT NULL,
+	    user_uuid uuid NOT NULL,
+	    transaction_reference uuid,
+	    transaction_note text,
+	    transaction_currency_code text NOT NULL,
+	    transaction_country_id integer NOT NULL,
+	    credit_amount int NOT NULL, 
+	    available_amount int DEFAULT 0, 
+	    exausted boolean DEFAULT false, 
+	    type VARCHAR(32), 
+	    priority int,
+	    expires_at timestamp without time zone, 
+	    created_at timestamp without time zone,
+	    updated_at timestamp without time zone,
+	    CONSTRAINT ledger_user_uuid_user_country_id_user_currency_code_transac_key UNIQUE (user_uuid, transaction_reference, created_at)
+	);
+2020-12-17 10:31:44.803 IST [8207] ERROR:  type "enum" does not exist at character 298
+2020-12-17 10:31:44.803 IST [8207] STATEMENT:  CREATE TABLE ledger (
+	    id BIGSERIAL PRIMARY KEY,
+	    uuid uuid DEFAULT uuid_generate_v4() NOT NULL,
+	    user_uuid uuid NOT NULL,
+	    transaction_reference uuid,
+	    transaction_note text,
+	    transaction_currency_code text NOT NULL,
+	    transaction_country_id integer NOT NULL,
+	    credit_type ENUM('credit', 'debit'),
+	    credit_changed integer NOT NULL DEFAULT 0,
+	    credits_used integer NOT NULL DEFAULT 0,
+	    available_amount int DEFAULT 0, 
+	    exausted boolean DEFAULT false, 
+	    type VARCHAR(32), 
+	    priority int,
+	    expires_at timestamp without time zone, 
+	    created_at timestamp without time zone,
+	    updated_at timestamp without time zone,
+	    CONSTRAINT ledger_user_uuid_user_country_id_user_currency_code_transac_key UNIQUE (user_uuid, transaction_reference, created_at)
+	);
+2020-12-17 10:34:14.196 IST [8207] ERROR:  relation "ledger_user_uuid_user_country_id_user_currency_code_transac_key" already exists
+2020-12-17 10:34:14.196 IST [8207] STATEMENT:  CREATE TABLE ledger (
+	    id BIGSERIAL PRIMARY KEY,
+	    uuid uuid DEFAULT uuid_generate_v4() NOT NULL,
+	    user_uuid uuid NOT NULL,
+	    transaction_reference uuid,
+	    transaction_note text,
+	    transaction_currency_code text NOT NULL,
+	    transaction_country_id integer NOT NULL,
+	    credit_type credit_type_enum,
+	    credit_changed integer NOT NULL DEFAULT 0,
+	    credits_used integer NOT NULL DEFAULT 0,
+	    available_amount int DEFAULT 0, 
+	    exausted boolean DEFAULT false, 
+	    type VARCHAR(32), 
+	    priority int,
+	    expires_at timestamp without time zone, 
+	    created_at timestamp without time zone,
+	    updated_at timestamp without time zone,
+	    CONSTRAINT ledger_user_uuid_user_country_id_user_currency_code_transac_key UNIQUE (user_uuid, transaction_reference, created_at)
+	);
+2020-12-17 10:34:24.572 IST [8207] ERROR:  relation "public.credits" does not exist at character 359
+2020-12-17 10:34:24.572 IST [8207] STATEMENT:  SELECT pg_class.oid, obj_description(pg_class.oid, 'pg_class') AS comment, COALESCE(spcname, (select spcname from pg_tablespace, pg_database where pg_tablespace.oid=dattablespace and datname='postgres')) as tablespace, pg_get_viewdef(pg_class.oid,true) AS viewdef FROM pg_class LEFT JOIN pg_tablespace ON pg_tablespace.oid=reltablespace WHERE pg_class.oid = '"public"."credits"'::regclass::oid AND relkind='r';
+	SELECT attnum, attname, atttypid, attnotnull, format_type(atttypid,atttypmod), pg_get_expr(adbin, attrelid, true) AS adsrc, col_description(attrelid, attnum), typcategory, has_column_privilege(attrelid,attnum,'SELECT')
+	FROM pg_attribute
+	LEFT JOIN pg_type ON atttypid=pg_type.oid
+	LEFT JOIN pg_attrdef ON adrelid=attrelid AND adnum=attnum
+	WHERE attrelid = '"public"."credits"'::regclass AND NOT attisdropped
+	ORDER BY attnum;
+	SELECT pg_class.oid, pg_class.relname, indisunique, indisprimary, indisexclusion, indkey, pg_get_indexdef(indexrelid, 0, true) AS definition, ARRAY(select pg_get_indexdef(indexrelid, attnum, true) FROM pg_attribute WHERE attrelid = indexrelid ORDER BY attnum) AS expressions, obj_description(pg_class.oid, 'pg_class') AS comment, indoption, ARRAY(SELECT pg_collation.collname FROM unnest(indcollation) AS t(colid) LEFT JOIN pg_collation ON pg_collation.oid = colid) AS collations, ARRAY(SELECT pg_opclass.opcname FROM generate_series(0, indnatts-1) AS t(i) LEFT JOIN pg_opclass ON pg_opclass.oid = indclass[i]) AS opclasses, pg_get_expr(indpred,indrelid, true), amname FROM pg_index LEFT JOIN pg_class ON pg_class.oid = indexrelid LEFT JOIN pg_am ON pg_class.relam = pg_am.oid WHERE indrelid = '"public"."credits"'::regclass ORDER BY pg_class.oid; 
+	SELECT pg_constraint.oid, conname, contype, conkey, nspname AS fschema, relname AS ftable, confkey AS fkeys, pg_get_expr(conbin, conrelid, true), pg_get_constraintdef(pg_constraint.oid, true), confupdtype, confdeltype, obj_description(pg_constraint.oid, 'pg_constraint'), condeferrable, condeferred, connoinherit 
+	FROM pg_constraint
+	LEFT JOIN pg_class ON pg_class.oid = confrelid
+	LEFT JOIN pg_namespace ON pg_namespace.oid = pg_class.relnamespace
+	WHERE conrelid = '"public"."credits"'::regclass;
+	SELECT pg_type.oid, ARRAY(SELECT enumlabel FROM pg_enum WHERE enumtypid=pg_type.oid ORDER BY enumsortorder)
+	FROM pg_type
+	WHERE pg_type.oid IN (SELECT atttypid FROM pg_attribute WHERE attrelid = '"public"."credits"'::regclass) AND typtype='e';
+	
+2020-12-17 10:34:55.392 IST [8415] ERROR:  type "credit_type_enum" already exists
+2020-12-17 10:34:55.392 IST [8415] STATEMENT:  CREATE TYPE credit_type_enum AS ENUM('credit', 'debit');
+	
+	CREATE TABLE ledger (
+	    id BIGSERIAL PRIMARY KEY,
+	    uuid uuid DEFAULT uuid_generate_v4() NOT NULL,
+	    user_uuid uuid NOT NULL,
+	    transaction_reference uuid,
+	    transaction_note text,
+	    transaction_currency_code text NOT NULL,
+	    transaction_country_id integer NOT NULL,
+	    credit_type credit_type_enum,
+	    credit_changed integer NOT NULL DEFAULT 0,
+	    credits_used integer NOT NULL DEFAULT 0,
+	    available_amount int DEFAULT 0, 
+	    exausted boolean DEFAULT false, 
+	    type VARCHAR(32), 
+	    priority int,
+	    expires_at timestamp without time zone, 
+	    created_at timestamp without time zone,
+	    updated_at timestamp without time zone,
+	    CONSTRAINT ledger_user_uuid_user_country_id_user_currency_code_transac_key UNIQUE (user_uuid, transaction_reference, created_at)
+	);
+2020-12-17 10:38:09.179 IST [8527] ERROR:  type "credit_type_enum" already exists
+2020-12-17 10:38:09.179 IST [8527] STATEMENT:  CREATE TYPE credit_type_enum AS ENUM('credit', 'debit');
+	
+	CREATE TABLE ledger (
+	    id BIGSERIAL PRIMARY KEY,
+	    uuid uuid DEFAULT uuid_generate_v4() NOT NULL,
+	    user_uuid uuid NOT NULL,
+	    transaction_reference uuid,
+	    transaction_note text,
+	    transaction_currency_code text NOT NULL,
+	    transaction_country_id integer NOT NULL,
+	    credit_type credit_type_enum,
+	    credit_changed integer NOT NULL DEFAULT 0,
+	    credits_used integer NOT NULL DEFAULT 0,
+	    available_amount int DEFAULT 0, 
+	    exausted boolean DEFAULT false, 
+	    type VARCHAR(32), 
+	    priority int,
+	    expires_at timestamp without time zone, 
+	    created_at timestamp without time zone,
+	    updated_at timestamp without time zone,
+	    CONSTRAINT ledger_user_uuid_user_country_id_user_currency_code_transac_key UNIQUE (user_uuid, transaction_reference, created_at)
+	);
+2020-12-17 10:39:06.363 IST [8580] ERROR:  syntax error at or near "TYPE" at character 37
+2020-12-17 10:39:06.363 IST [8580] STATEMENT:  DROP TABLE IF EXISTS ledger;
+	DELETE TYPE credit_type_enum;
