@@ -26,15 +26,49 @@ go get
 
 Huroku deployment steps
 
+- Clone the repository, install dependecies and build the binary
+
 ```bash
 git clone https://github.com/Parag08/account-service-gin
 cd account-service-gin
 go get
 go build -o bin/account-service-gin -v .
-# this should start a local server
-heroku local
-heroku create
+```
 
+- Test the server locally
+
+```bash
+heroku local
+```
+
+- Create a heroku app
+
+```bash
+heroku create
+```
+
+- Add database plugin to heroku app
+
+```bash
+heroku addons:create heroku-postgresql:hobby-dev
+```
+
+- Use heroku config to get database url
+
+```bash
+heroku config
+```
+
+- Run migrations on the database url
+
+```bash
+migrate -source file://migrations -database <DATABASE_URL> up
+```
+
+- Open the app in browser
+
+```bash
+heroku open
 ```
 
 ## Test
@@ -44,3 +78,4 @@ heroku create
 ## Reference
 
 - https://github.com/gin-gonic/gin
+
