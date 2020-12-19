@@ -9,5 +9,8 @@ func main() {
 	router := gin.Default()
 
 	router.GET("/status", api.Status)
+	router.GET("/", api.Status)
+	router.POST("/account", api.CreateAccountHandler)
+
 	router.Run()
 }

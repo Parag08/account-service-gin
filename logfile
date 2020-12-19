@@ -191,3 +191,10 @@
 2020-12-17 10:39:06.363 IST [8580] ERROR:  syntax error at or near "TYPE" at character 37
 2020-12-17 10:39:06.363 IST [8580] STATEMENT:  DROP TABLE IF EXISTS ledger;
 	DELETE TYPE credit_type_enum;
+2020-12-19 11:11:56.254 IST [54225] FATAL:  lock file "postmaster.pid" already exists
+2020-12-19 11:11:56.254 IST [54225] HINT:  Is another postmaster (PID 5922) running in data directory "/Users/paragrahangdale/go/src/github.com/account-service-gin/db"?
+2020-12-19 12:24:14.290 IST [70208] ERROR:  there is no parameter $1 at character 45
+2020-12-19 12:24:14.290 IST [70208] STATEMENT:  INSERT INTO accounts (user_id)
+				  VALUES ($1)
+				  RETURNING user_id, balance, created_at, updated_at
+		
