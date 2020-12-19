@@ -198,3 +198,227 @@
 				  VALUES ($1)
 				  RETURNING user_id, balance, created_at, updated_at
 		
+2020-12-19 13:33:50.895 IST [74109] ERROR:  syntax error at or near "," at character 244
+2020-12-19 13:33:50.895 IST [74109] STATEMENT:  CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+	RETURNS TRIGGER AS $$
+	BEGIN
+	  NEW.updated_at = NOW();
+	  RETURN NEW;
+	END;
+	$$ LANGUAGE plpgsql;
+	
+	CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+	CREATE TABLE accounts (
+	    id BIGSERIAL PRIMARY KEY,,
+	    user_id uuid NOT NULL,
+	    balance int DEFAULT 0 NOT NULL, 
+	    created_at timestamp with time zone DEFAULT NOW(),
+	    updated_at timestamp with time zone DEFAULT NOW()
+	);
+	ALTER TABLE ONLY accounts
+	    ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
+	CREATE UNIQUE INDEX accounts_user_id_key ON accounts(user_id uuid_ops);
+	
+	CREATE TRIGGER set_timestamp
+	BEFORE UPDATE ON accounts
+	FOR EACH ROW
+	EXECUTE PROCEDURE trigger_set_timestamp();
+2020-12-19 13:35:59.657 IST [74169] ERROR:  type "credit_type_enum" does not exist
+2020-12-19 13:35:59.657 IST [74169] STATEMENT:  DROP TABLE IF EXISTS ledger;
+	DROP TYPE credit_type_enum;
+2020-12-19 13:36:36.130 IST [74213] ERROR:  multiple primary keys for table "accounts" are not allowed
+2020-12-19 13:36:36.130 IST [74213] STATEMENT:  CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+	RETURNS TRIGGER AS $$
+	BEGIN
+	  NEW.updated_at = NOW();
+	  RETURN NEW;
+	END;
+	$$ LANGUAGE plpgsql;
+	
+	CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+	CREATE TABLE accounts (
+	    id BIGSERIAL PRIMARY KEY,
+	    user_id uuid NOT NULL,
+	    balance int DEFAULT 0 NOT NULL, 
+	    created_at timestamp with time zone DEFAULT NOW(),
+	    updated_at timestamp with time zone DEFAULT NOW()
+	);
+	ALTER TABLE ONLY accounts
+	    ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
+	CREATE UNIQUE INDEX accounts_user_id_key ON accounts(user_id uuid_ops);
+	
+	CREATE TRIGGER set_timestamp
+	BEFORE UPDATE ON accounts
+	FOR EACH ROW
+	EXECUTE PROCEDURE trigger_set_timestamp();
+2020-12-19 13:38:46.819 IST [74293] ERROR:  syntax error at or near "UNIQUE" at character 516
+2020-12-19 13:38:46.819 IST [74293] STATEMENT:  CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+	RETURNS TRIGGER AS $$
+	BEGIN
+	  NEW.updated_at = NOW();
+	  RETURN NEW;
+	END;
+	$$ LANGUAGE plpgsql;
+	
+	CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+	CREATE TABLE accounts (
+	    id BIGSERIAL PRIMARY KEY,
+	    user_id uuid NOT NULL,
+	    balance int DEFAULT 0 NOT NULL, 
+	    created_at timestamp with time zone DEFAULT NOW(),
+	    updated_at timestamp with time zone DEFAULT NOW()
+	);
+	ALTER TABLE ONLY accounts
+	    ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
+	CREATE OR REPLACE UNIQUE INDEX accounts_user_id_key ON accounts(user_id uuid_ops);
+	
+	CREATE OR REPLACE TRIGGER set_timestamp
+	BEFORE UPDATE ON accounts
+	FOR EACH ROW
+	EXECUTE PROCEDURE trigger_set_timestamp();
+2020-12-19 13:39:19.037 IST [74330] ERROR:  syntax error at or near "UNIQUE" at character 498
+2020-12-19 13:39:19.037 IST [74330] STATEMENT:  CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+	RETURNS TRIGGER AS $$
+	BEGIN
+	  NEW.updated_at = NOW();
+	  RETURN NEW;
+	END;
+	$$ LANGUAGE plpgsql;
+	
+	CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+	CREATE TABLE accounts (
+	    id BIGSERIAL PRIMARY KEY,
+	    user_id uuid NOT NULL,
+	    balance int DEFAULT 0 NOT NULL, 
+	    created_at timestamp with time zone DEFAULT NOW(),
+	    updated_at timestamp with time zone DEFAULT NOW()
+	);
+	ALTER TABLE ONLY accounts
+	    ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
+	UNIQUE INDEX accounts_user_id_key ON accounts(user_id uuid_ops);
+	
+	CREATE OR REPLACE TRIGGER set_timestamp
+	BEFORE UPDATE ON accounts
+	FOR EACH ROW
+	EXECUTE PROCEDURE trigger_set_timestamp();
+2020-12-19 13:39:56.647 IST [71541] ERROR:  multiple primary keys for table "accounts" are not allowed
+2020-12-19 13:39:56.647 IST [71541] STATEMENT:  ALTER TABLE ONLY accounts
+	    ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
+2020-12-19 13:40:31.628 IST [74388] ERROR:  syntax error at or near "UNIQUE" at character 421
+2020-12-19 13:40:31.628 IST [74388] STATEMENT:  CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+	RETURNS TRIGGER AS $$
+	BEGIN
+	  NEW.updated_at = NOW();
+	  RETURN NEW;
+	END;
+	$$ LANGUAGE plpgsql;
+	
+	CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+	CREATE TABLE accounts (
+	    id BIGSERIAL PRIMARY KEY,
+	    user_id uuid NOT NULL,
+	    balance int DEFAULT 0 NOT NULL, 
+	    created_at timestamp with time zone DEFAULT NOW(),
+	    updated_at timestamp with time zone DEFAULT NOW()
+	);
+	UNIQUE INDEX accounts_user_id_key ON accounts(user_id uuid_ops);
+	
+	CREATE OR REPLACE TRIGGER set_timestamp
+	BEFORE UPDATE ON accounts
+	FOR EACH ROW
+	EXECUTE PROCEDURE trigger_set_timestamp();
+2020-12-19 13:40:49.205 IST [71541] ERROR:  syntax error at or near "UNIQUE" at character 1
+2020-12-19 13:40:49.205 IST [71541] STATEMENT:  UNIQUE INDEX accounts_user_id_key ON accounts(user_id uuid_ops);
+2020-12-19 13:42:22.809 IST [74443] ERROR:  syntax error at or near "TRIGGER" at character 462
+2020-12-19 13:42:22.809 IST [74443] STATEMENT:  CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+	RETURNS TRIGGER AS $$
+	BEGIN
+	  NEW.updated_at = NOW();
+	  RETURN NEW;
+	END;
+	$$ LANGUAGE plpgsql;
+	
+	CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+	CREATE TABLE accounts (
+	    id BIGSERIAL PRIMARY KEY,
+	    user_id uuid NOT NULL,
+	    balance int DEFAULT 0 NOT NULL, 
+	    created_at timestamp with time zone DEFAULT NOW(),
+	    updated_at timestamp with time zone DEFAULT NOW(),
+	    UNIQUE (user_id)
+	);
+	
+	CREATE OR REPLACE TRIGGER set_timestamp
+	BEFORE UPDATE ON accounts
+	FOR EACH ROW
+	EXECUTE PROCEDURE trigger_set_timestamp();
+2020-12-19 13:42:31.343 IST [71541] ERROR:  syntax error at or near "TRIGGER" at character 19
+2020-12-19 13:42:31.343 IST [71541] STATEMENT:  CREATE OR REPLACE TRIGGER set_timestamp
+	BEFORE UPDATE ON accounts
+	FOR EACH ROW
+	EXECUTE PROCEDURE trigger_set_timestamp();
+2020-12-19 13:42:36.226 IST [71541] ERROR:  relation "accounts" does not exist
+2020-12-19 13:42:36.226 IST [71541] STATEMENT:  CREATE TRIGGER set_timestamp
+	BEFORE UPDATE ON accounts
+	FOR EACH ROW
+	EXECUTE PROCEDURE trigger_set_timestamp();
+2020-12-19 14:02:21.580 IST [82610] ERROR:  duplicate key value violates unique constraint "accounts_user_id_key"
+2020-12-19 14:02:21.580 IST [82610] DETAIL:  Key (user_id)=(a7f39653-025d-4932-bb3a-93c5c256597a) already exists.
+2020-12-19 14:02:21.580 IST [82610] STATEMENT:  INSERT INTO accounts (user_id)
+				  VALUES ($1)
+				  RETURNING user_id, balance, created_at, updated_at
+		
+2020-12-19 14:02:59.864 IST [83004] ERROR:  duplicate key value violates unique constraint "accounts_user_id_key"
+2020-12-19 14:02:59.864 IST [83004] DETAIL:  Key (user_id)=(a7f39653-025d-4932-bb3a-93c5c256597a) already exists.
+2020-12-19 14:02:59.864 IST [83004] STATEMENT:  INSERT INTO accounts (user_id)
+				  VALUES ($1)
+				  RETURNING user_id, balance, created_at, updated_at
+		
+2020-12-19 14:04:50.350 IST [83315] ERROR:  duplicate key value violates unique constraint "accounts_user_id_key"
+2020-12-19 14:04:50.350 IST [83315] DETAIL:  Key (user_id)=(a7f39653-025d-4932-bb3a-93c5c256597a) already exists.
+2020-12-19 14:04:50.350 IST [83315] STATEMENT:  INSERT INTO accounts (user_id)
+				  VALUES ($1)
+				  RETURNING user_id, balance, created_at, updated_at
+		
+2020-12-19 14:07:18.853 IST [83894] ERROR:  duplicate key value violates unique constraint "accounts_user_id_key"
+2020-12-19 14:07:18.853 IST [83894] DETAIL:  Key (user_id)=(a7f39653-025d-4932-bb3a-93c5c256597a) already exists.
+2020-12-19 14:07:18.853 IST [83894] STATEMENT:  INSERT INTO accounts (user_id)
+				  VALUES ($1)
+				  RETURNING user_id, balance, created_at, updated_at
+		
+2020-12-19 14:08:38.431 IST [84176] ERROR:  duplicate key value violates unique constraint "accounts_user_id_key"
+2020-12-19 14:08:38.431 IST [84176] DETAIL:  Key (user_id)=(a7f39653-025d-4932-bb3a-93c5c256597a) already exists.
+2020-12-19 14:08:38.431 IST [84176] STATEMENT:  INSERT INTO accounts (user_id)
+				  VALUES ($1)
+				  RETURNING user_id, balance, created_at, updated_at
+		
+2020-12-19 14:09:37.783 IST [84672] ERROR:  duplicate key value violates unique constraint "accounts_user_id_key"
+2020-12-19 14:09:37.783 IST [84672] DETAIL:  Key (user_id)=(a7f39653-025d-4932-bb3a-93c5c256597a) already exists.
+2020-12-19 14:09:37.783 IST [84672] STATEMENT:  INSERT INTO accounts (user_id)
+				  VALUES ($1)
+				  RETURNING user_id, balance, created_at, updated_at
+		
+2020-12-19 14:11:47.654 IST [85114] ERROR:  duplicate key value violates unique constraint "accounts_user_id_key"
+2020-12-19 14:11:47.654 IST [85114] DETAIL:  Key (user_id)=(a7f39653-025d-4932-bb3a-93c5c256597a) already exists.
+2020-12-19 14:11:47.654 IST [85114] STATEMENT:  INSERT INTO accounts (user_id)
+				  VALUES ($1)
+				  RETURNING user_id, balance, created_at, updated_at
+		
+2020-12-19 14:12:27.870 IST [85359] ERROR:  duplicate key value violates unique constraint "accounts_user_id_key"
+2020-12-19 14:12:27.870 IST [85359] DETAIL:  Key (user_id)=(a7f39653-025d-4932-bb3a-93c5c256597a) already exists.
+2020-12-19 14:12:27.870 IST [85359] STATEMENT:  INSERT INTO accounts (user_id)
+				  VALUES ($1)
+				  RETURNING user_id, balance, created_at, updated_at
+		
+2020-12-19 14:13:07.529 IST [85686] ERROR:  duplicate key value violates unique constraint "accounts_user_id_key"
+2020-12-19 14:13:07.529 IST [85686] DETAIL:  Key (user_id)=(a7f39653-025d-4932-bb3a-93c5c256597a) already exists.
+2020-12-19 14:13:07.529 IST [85686] STATEMENT:  INSERT INTO accounts (user_id)
+				  VALUES ($1)
+				  RETURNING user_id, balance, created_at, updated_at
+		
+2020-12-19 14:13:58.559 IST [85981] ERROR:  duplicate key value violates unique constraint "accounts_user_id_key"
+2020-12-19 14:13:58.559 IST [85981] DETAIL:  Key (user_id)=(a7f39653-025d-4932-bb3a-93c5c256597a) already exists.
+2020-12-19 14:13:58.559 IST [85981] STATEMENT:  INSERT INTO accounts (user_id)
+				  VALUES ($1)
+				  RETURNING user_id, balance, created_at, updated_at
+		

@@ -2,6 +2,6 @@
 
 export PORT=8080
 export GIN_MODE=debug
-export DATABASE_URL=postgresql://localhost/postgres?sslmode=disable
+export DATABASE_URL=postgresql://localhost/postgres
 
 go run server.go

@@ -12,7 +12,7 @@ func CreateAccountHandler(ctx *gin.Context) {
 	var (
 		err  error
 		resp struct {
-			Account models.Account `json:"account"`
+			Account *models.Account `json:"account"`
 		}
 		createAccountParams models.CreateAccountParams
 	)
@@ -23,6 +23,8 @@ func CreateAccountHandler(ctx *gin.Context) {
 
 	if resp.Account, err = account.CreateAccount(createAccountParams); err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
 	}
 	ctx.JSON(http.StatusOK, gin.H{"account": resp.Account})
+	return
 }

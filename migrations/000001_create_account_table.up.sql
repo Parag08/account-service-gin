@@ -8,14 +8,13 @@ $$ LANGUAGE plpgsql;
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE accounts (
-    id uuid DEFAULT uuid_generate_v4() NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
     user_id uuid NOT NULL,
     balance int DEFAULT 0 NOT NULL, 
     created_at timestamp with time zone DEFAULT NOW(),
-    updated_at timestamp with time zone DEFAULT NOW()
+    updated_at timestamp with time zone DEFAULT NOW(),
+    UNIQUE (user_id)
 );
-ALTER TABLE ONLY accounts
-    ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
 
 CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON accounts
