@@ -28,3 +28,25 @@ func CreateAccountHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"account": resp.Account})
 	return
 }
+
+func GetAccountHandler(ctx *gin.Context) {
+	var (
+		err  error
+		resp struct {
+			Account *models.Account `json:"account"`
+		}
+	)
+
+	userID := ctx.Param("userID")
+	if userID == "" {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "userID not supplied"})
+		return
+	}
+
+	if resp.Account, err = account.GetAccount(userID); err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{"account": resp.Account})
+	return
+}

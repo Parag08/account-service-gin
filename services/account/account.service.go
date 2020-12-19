@@ -31,3 +31,28 @@ func CreateAccount(createAccountParams models.CreateAccountParams) (*models.Acco
 	}
 	return &acc, err
 }
+
+// GetAccount : get account from database
+func GetAccount(userID string) (*models.Account, error) {
+	var (
+		acc models.Account
+		err error
+	)
+	db := database.NewStore()
+	rows, err := db.Query(`SELECT user_id, balance, created_at, updated_at 
+	                    FROM accounts WHERE user_id=$1`, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		err = rows.Scan(&acc.UserID, &acc.Balance, &acc.CreatedAt, &acc.UpdatedAt)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if err = rows.Err(); err != nil {
+		return nil, err
+	}
+	return &acc, err
+}

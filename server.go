@@ -11,6 +11,7 @@ func main() {
 	router.GET("/status", api.Status)
 	router.GET("/", api.Status)
 	router.POST("/account", api.CreateAccountHandler)
+	router.GET("/account/:userID", api.GetAccountHandler)
 
 	router.Run()
 }
